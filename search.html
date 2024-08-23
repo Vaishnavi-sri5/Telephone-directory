@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Contacts - Telephone Directory</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Search Contacts</h1>
+        <input type="text" id="searchInput" placeholder="Search by name, phone, address or email">
+        <button id="searchButton">Search</button>
+        <table id="contactList">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Phone Numbers</th>
+                    <th>Address</th>
+                    <th>Emails</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <nav>
+            <a href="index.html">Back to Home</a>
+        </nav>
+        <script>
+            document.getElementById('searchButton').addEventListener('click', function() {
+                const query = document.getElementById('searchInput').value;
+        
+                fetch(`http://localhost:3000/search-contacts?q=${encodeURIComponent(query)}`)
+                .then(response => response.json())
+                .then(contacts => {
+                    const contactList = document.getElementById('contactList');
+                    contactList.innerHTML = '';
+        
+                    contacts.forEach(contact => {
+                        const listItem = document.createElement('li');
+                        listItem.innerHTML = `
+                            <strong>Name:</strong> ${contact.name}<br>
+                            <strong>Phone Numbers:</strong> ${contact.phoneNumbers.split(', ').join(', ')}<br>
+                            <strong>Address:</strong> ${contact.address}<br>
+                            <strong>Emails:</strong> ${contact.emails.split(', ').join(', ')}
+                        `;
+                        contactList.appendChild(listItem);
+                    });
+        
+                    if (contacts.length === 0) {
+                        contactList.innerHTML = '<li>No contacts found</li>';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            });
+        </script>
+        <script src="script.js"></script>
+    </div>
+</body>
+</html>

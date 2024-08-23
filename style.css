@@ -1,0 +1,64 @@
+/* General Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('img.jpg') no-repeat center center fixed; /* Add your image path here */
+    background-size: cover;
+    color: #fff;
+}
+
+/* Container */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 50px 20px;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Header */
+h1 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #f1c40f; /* Gold color */
+    text-shadow: 2px 2px 4px #000;
+}
+
+/* Navigation */
+nav {
+    text-align: center;
+    margin-top: 30px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #f1c40f;
+    background-color: #007BFF;
+    padding: 15px 25px;
+    margin: 0 15px;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+}
+
+nav a:hover {
+    background-color: #0056b3;
+    color: #fff;
+    box-shadow: 0px 5px 15px rgba(0, 123, 255, 0.4);
+}
+
+/* Media Query for Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 30px 10px;
+    }
+
+    nav a {
+        padding: 10px 20px;
+        margin: 10px 5px;
+    }
+}
